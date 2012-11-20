@@ -1,10 +1,9 @@
 Ext.define("FC.view.Main", {
-    extend : 'Ext.Container',
+    extend : 'Ext.Panel',
     requires : ['Ext.TitleBar'],
+    id : 'MainPanel',
     config : {
-		layout : {
-			type : 'fit'
-		},
+		layout : 'card',
 		items : [
 		         {
 		        	 xtype : 'toolbar',
@@ -30,6 +29,9 @@ Ext.define("FC.view.Main", {
 		        		  {
 		        	          xtype : 'button',
 		        	          text : 'Home',
+		        	          handler : function(btn){
+		        	        	  
+		        	          },
 			        		  iconCls: 'home',
 		        	          iconMask : true
 		        		  },
