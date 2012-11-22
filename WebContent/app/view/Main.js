@@ -12,10 +12,16 @@ Ext.define("FC.view.Main", {
 		         },
 		         { 
                      xtype : 'image',
+                     id : 'idImage',
+                     
                      src : 'http://www.sencha.com/img/sencha-large.png',
                      listeners: {
                          tap: function (img, evt) {
-                            Ext.Msg.alert('You clicked the image');
+                        	//var cssPos="";
+                        	img.setSrc("http://cfs9.tistory.com/image/3/tistory/2008/09/22/00/45/48d66c0f79d27");
+                        	img.setHtml("<div id='imgPos' style='position:absolute;top:100px; left:100px '><p>You open the Cookies</p></div>");
+                        	//img.setShowAnimation('slideIn');
+                        	//Ext.Msg.alert('You clicked the image');
                                      
                          } 
                      } 
