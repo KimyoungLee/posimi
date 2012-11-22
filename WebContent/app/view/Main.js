@@ -37,7 +37,12 @@ Ext.define("FC.view.Main", {
 		         	}, 
 		        	 items : [
 		        	      {
-		        	         xtype : 'New'       	          
+		        	         xtype : 'button',
+		        	         text : 'New',
+		        	         handler : function() {
+		        	        	 //var cardId = getCmp(idNew);
+		        	        	 //cardId.setActiveItem
+		        	         }
 		        		  },
 		        		  {
 		        			  xtype : 'spacer'
