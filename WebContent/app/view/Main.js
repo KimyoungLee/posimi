@@ -10,6 +10,16 @@ Ext.define("FC.view.Main", {
 			         docked : 'top',
 			         title : 'Fortune Cookies!'
 		         },
+		         { 
+                     xtype : 'image',
+                     src : 'http://www.sencha.com/img/sencha-large.png',
+                     listeners: {
+                         tap: function (img, evt) {
+                            Ext.Msg.alert('You clicked the image');
+                                     
+                         } 
+                     } 
+             },
 		         {
 		        	 xtype : 'Cookies'
 		         },
