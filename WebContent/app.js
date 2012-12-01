@@ -1,47 +1,101 @@
+Ext.Loader.setConfig({enabled: true});
+Ext.require("Ext.TitleBar");
+
 Ext.application({
-    name: 'FC',
-
-    requires: [
-        'Ext.MessageBox'
-    ],
-
-    views: ['Main', 'Cookies', 'New','Settings'],
-
-    icon: {
-        '57': 'resources/icons/Icon.png',
-        '72': 'resources/icons/Icon~ipad.png',
-        '114': 'resources/icons/Icon@2x.png',
-        '144': 'resources/icons/Icon~ipad@2x.png'
-    },
-
-    isIconPrecomposed: true,
-
-    startupImage: {
-        '320x460': 'resources/startup/320x460.jpg',
-        '640x920': 'resources/startup/640x920.png',
-        '768x1004': 'resources/startup/768x1004.png',
-        '748x1024': 'resources/startup/748x1024.png',
-        '1536x2008': 'resources/startup/1536x2008.png',
-        '1496x2048': 'resources/startup/1496x2048.png'
-    },
+    name: 'Posimi',
 
     launch: function() {
-        // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
+    	
+    	var memory = Ext.create("Ext.Panel", {
+    		style: "background-color:#f00",
+    		id : 'pnl_1' 
+    	});
 
-        // Initialize the main view
-        Ext.Viewport.add(Ext.create('FC.view.Main'));
-    },
+    	var cookie = Ext.create("Ext.Panel", {
+    		style: "background-color:#0f0"
+    	});
 
-    onUpdated: function() {
-        Ext.Msg.confirm(
-            "Application Update",
-            "This application has just successfully been updated to the latest version. Reload now?",
-            function(buttonId) {
-                if (buttonId === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
+    	var setting = Ext.create("Ext.Panel", {
+    		items : [
+//    		     { 
+//    		    	 xtype : 'picker',
+//    		    	 slots: {
+//    				    	title: "환경설정",
+//    				    	items:[
+//    				    	       {
+//    				    	    	   xtype: "picker", name: "age", title: "나이", 
+//    				    	    	   data: [
+//    				    	               {text: "10대", value: 10},
+//    				    	               {text: "20대", value: 20},
+//    				    	               {text: "30대", value: 30},
+//    				    	               {text: "40대", value: 40},
+//    				    	               {text: "50대", value: 50}
+//    				    	           ]
+//    				    	       }
+//    				        ]
+//    		    		}
+//    		     }
+				{
+					xtype: "fieldset",
+					items: [
+						{
+							xtype: "selectfield",
+					    	name: "age",
+					    	label: "나이",
+					    	options: [
+								{text: "10대", value: 10},
+								{text: "20대", value: 20},
+								{text: "30대", value: 30},
+								{text: "40대", value: 40},
+								{text: "50대", value: 50}
+					    	]
+						},
+						{
+							xtype: "selectfield",
+					    	name: "gender",
+					    	label: "성별",
+					    	options: [
+								{text: "남자", value: "male"},
+								{text: "여자", value: "female"}
+					    	]
+						}
+					]
+				}
+    		]
+    	});
+    	
+    	var btnMemory = Ext.create("Ext.Button", {
+    		text: "memory",
+    		ui: "back",
+    		align: "left",
+    		handler: function(btn, event) {
+    			basePanel.setActiveItem(1);
+    		}
+    	});
+    	
+    	var btnSetting = Ext.create("Ext.Button", {
+    		text: "setting",
+    		ui: "forward",
+    		align: "right"
+    	});
+    	
+    	var navi = Ext.create("Ext.TitleBar", {
+    		docked: "top",
+    		ui: "light",
+    		title: "Posimi",
+    		items: [btnMemory, btnSetting]
+    	});
+    	
+    	var basePanel = Ext.create("Ext.Panel", {
+    		layout: {
+    			type: "card"
+    		},
+    		activeItem: 0,
+    		items: [navi, memory, cookie, setting]
+    	});
+
+        Ext.Viewport.add(basePanel);
+//    	Ext.Viewport.add(setting);
     }
 });
