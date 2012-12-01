@@ -2,6 +2,7 @@ Ext.Loader.setConfig({
 	enabled : true
 });
 Ext.require("Ext.TitleBar");
+Ext.require("Ext.MessageBox");
 
 Ext.application({
 	name : 'Posimi',
@@ -23,9 +24,9 @@ Ext.application({
 			items : [ {
 				xtype : "fieldset",
 				title : "개인정보",
-				text: "d",
-				html : "이 정보는 사용자분께 맞춤 서비스를 드리기 위해 기입하는 것이오니 염려 마시길 바랍니다.",
 				
+				html : "이 정보는 사용자분께 맞춤 서비스를 드리기 위해 기입하는 것이오니 염려 마시길 바랍니다.",
+				style:"background-color:#FFA7A7",
 			}, {
 				xtype : "fieldset",
 				title : "성별",
