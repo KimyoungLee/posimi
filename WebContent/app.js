@@ -1,101 +1,92 @@
 Ext.Loader.setConfig({enabled: true});
 Ext.require("Ext.TitleBar");
+Ext.require("Ext.MessageBox");
+
+var data = [
+    {
+    	date: 0,
+    	msg: "한글사랑 나라사랑",
+    	checkd: false
+    },
+    {
+    	date: 1354344478119,
+    	msg: "부모님사랑 나라사랑",
+    	checkd: false
+    },
+    {
+    	date: 1354344478119,
+    	msg: "할아부지사 나라사랑",
+    	checkd: false
+    },
+    {
+    	date: 1354344478119,
+    	msg: "할머니사랑 나라사랑",
+    	checkd: false
+    },
+    {
+    	date: 1354344478119,
+    	msg: "가족사랑 나라사랑",
+    	checkd: false
+    },
+];
 
 Ext.application({
     name: 'Posimi',
 
     launch: function() {
         Ext.fly('appLoadingIndicator').destroy();
-    	
+
+        var listHtml = "<ul id='list' class='memory-list'></ul>";
+
+        var listComposit = function() {
+        	var i = 0,
+        	list = document.getElementById("list"),
+        	articles = list.getElementsByTagName("li");
+
+        	//기존리스트제거
+        	for(i = 0; i < articles.length; i++) list.removeChild(articles[i]);
+
+        	//새로 리스트 그리기
+        	for(var i = 0; i < data.length; i++) {
+        		var text = document.createTextNode(data[i].msg),
+        		li = document.createElement("li");
+        		
+        		li.appendChild(text);
+        		li.addEventListener("click", function(msg){
+        			return function(e) {
+            			Ext.Msg.alert("내용", msg);
+        			};
+        		}(data[i].msg), true);
+
+        		list.appendChild(li);
+        	}
+        };
+        
     	var memory = Ext.create("Ext.Panel", {
-    		style: "background-color:#f00",
-    		id : 'pnl_1' 
-    	});
-
-    	var cookie = Ext.create("Ext.Panel", {
-    		style: "background-color:#0f0"
-    	});
-
-    	var setting = Ext.create("Ext.Panel", {
-    		items : [
-//    		     { 
-//    		    	 xtype : 'picker',
-//    		    	 slots: {
-//    				    	title: "환경설정",
-//    				    	items:[
-//    				    	       {
-//    				    	    	   xtype: "picker", name: "age", title: "나이", 
-//    				    	    	   data: [
-//    				    	               {text: "10대", value: 10},
-//    				    	               {text: "20대", value: 20},
-//    				    	               {text: "30대", value: 30},
-//    				    	               {text: "40대", value: 40},
-//    				    	               {text: "50대", value: 50}
-//    				    	           ]
-//    				    	       }
-//    				        ]
-//    		    		}
-//    		     }
-				{
-					xtype: "fieldset",
-					items: [
-						{
-							xtype: "selectfield",
-					    	name: "age",
-					    	label: "나이",
-					    	options: [
-								{text: "10대", value: 10},
-								{text: "20대", value: 20},
-								{text: "30대", value: 30},
-								{text: "40대", value: 40},
-								{text: "50대", value: 50}
-					    	]
-						},
-						{
-							xtype: "selectfield",
-					    	name: "gender",
-					    	label: "성별",
-					    	options: [
-								{text: "남자", value: "male"},
-								{text: "여자", value: "female"}
-					    	]
-						}
-					]
-				}
-    		]
-    	});
-    	
-    	var btnMemory = Ext.create("Ext.Button", {
-    		text: "memory",
-    		ui: "back",
-    		align: "left",
-    		handler: function(btn, event) {
-    			basePanel.setActiveItem(1);
-    		}
-    	});
-    	
-    	var btnSetting = Ext.create("Ext.Button", {
-    		text: "setting",
-    		ui: "forward",
-    		align: "right"
-    	});
-    	
-    	var navi = Ext.create("Ext.TitleBar", {
-    		docked: "top",
-    		ui: "light",
-    		title: "Posimi",
-    		items: [btnMemory, btnSetting]
+    		html: listHtml,
+    		scrollable: true
     	});
     	
     	var basePanel = Ext.create("Ext.Panel", {
     		layout: {
-    			type: "card"
+    			type: "card",
+    			animation: {
+    				type: "slide",
+    				direction: "left"
+    			}
     		},
-    		activeItem: 0,
-    		items: [navi, memory, cookie, setting]
+    		items: [
+    		    memory
+    		]
     	});
+    	
+    	Ext.Viewport.add(basePanel);
+    	
+    	
 
-        Ext.Viewport.add(basePanel);
-//    	Ext.Viewport.add(setting);
+    	//after on loaded
+    	(function(){
+    		listComposit();
+    	}());
     }
 });
