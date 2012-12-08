@@ -49,25 +49,43 @@
             }
         }
         
-        .memory-list {
-        	 width: 100%;
-        }
-        .memory-list li {
-        	border-width:1px 1px 0 1px;
-        	border-style: solid;
-        	border-color: #aaa;
-        	height: 40px;
-        	line-height: 40px;
-        	text-indent: 10px;
-        }
-        .memory-list li:last-child {
-        	border-width:1px;
-        	border-style: solid;
-        	border-color: #aaa;
-        }
-        .memory-list li:hover {
-        	background-color:#ddd;
-        }
+		.wrap	{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			min-height: 100%;
+			text-align: center;
+			background:url("./img/bg.png") no-repeat 50% 0;
+		}
+		
+		#wrap {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			border: 1px solid red;
+			backgrond-color:#fff;
+			opacity: 0;
+		}
+		
+		.text-bound {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width:100%;
+			height:100%;
+			text-align:center;
+			margin: auto 0;
+		}
+		
+		#text {
+			display: none;
+			margin: 630px auto;
+			top: 150px;
+			width:400px;
+			text-align: center;
+			font-weight: bold;
+			font-size: 1.2em;
+		}
     </style>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src="sdk/microloader/development.js"></script>
