@@ -86,15 +86,46 @@
 			font-weight: bold;
 			font-size: 1.2em;
 		}
+		@-webkit-keyframes introChage {
+			0% {
+				opacity:1;
+			}
+   			25% {
+    				opacity:1;
+  			}
+  			75% {
+    				opacity:0;
+  			}
+  			100% {
+   				opacity:0;
+ 			}
+		}
+		#intro {
+  			position:relative;
+  			height:281px;
+  			width:450px;
+  			margin:0 auto;
+		}
+		#intor img {
+  			position:absolute;
+  			left:0;
+		}
+
+		#intro img.top {
+  			-webkit-animation-name: introChange;
+  			-webkit-animation-timing-function: ease-in-out;
+  			-webkit-animation-iteration-count: infinite;
+  			-webkit-animation-duration: 10s;
+  			-webkit-animation-direction: alternate;
+		}
     </style>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src="sdk/microloader/development.js"></script>
 </head>
 <body>
-    <div id="appLoadingIndicator">
-        <div></div>
-        <div></div>
-        <div></div>
+    <div id="intro">
+        <img class='bottom' src="./posimi.png">
+        <img class='top' src="./posimi_open.png">
     </div>
 </body>
 </html>
